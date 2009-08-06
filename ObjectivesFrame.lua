@@ -182,7 +182,7 @@ local accepted = {}
 function TourGuide:UpdateOHPanel(value)
 	if not frame or not frame:IsVisible() then return end
 
-	title:SetText(self.db.char.currentguide or L["No Guide Loaded"])
+	title:SetText(TourGuide:GuideTitleTranslator(self.db.char.currentguide) or L["No Guide Loaded"])
 	local r,g,b = self.ColorGradient((self.current-1)/#self.actions)
 	completed:SetText(string.format(L["|cff%02x%02x%02x%d%% complete"], r*255, g*255, b*255, (self.current-1)/#self.actions*100))
 

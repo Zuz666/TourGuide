@@ -138,7 +138,11 @@ end
 
 function dataobj.OnLeave() GameTooltip:Hide() end
 function dataobj.OnEnter(self)
-	local tip = TourGuide:GetObjectiveTag("N")
+	if IsShiftKeyDown() then
+		tip = TourGuide:GetObjectiveTag("QID")
+	else
+		tip = TourGuide:GetObjectiveTag("N")
+	end
 	if not tip then return end
 
  	GameTooltip:SetOwner(self, "ANCHOR_NONE")
@@ -146,5 +150,9 @@ function dataobj.OnEnter(self)
 	local anchpoint = (vhalf == "TOP" and "BOTTOM" or "TOP")..hhalf
 	TourGuide:Debug(11, "Setting tooltip anchor", anchpoint, quad, hhalf, vhalf)
 	GameTooltip:SetPoint(quad, self, anchpoint)
-	GameTooltip:SetText(tip, nil, nil, nil, nil, true)
+	if IsShiftKeyDown() then
+		GameTooltip:SetHyperlink("quest:"..tip)
+	else
+		GameTooltip:SetText(tip, nil, nil, nil, nil, true)
+	end
 end

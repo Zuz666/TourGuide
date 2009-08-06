@@ -2,6 +2,7 @@
 local L = TourGuide.Locale
 local THREE_TWO = select(4, GetBuildInfo()) >= 30200
 
+
 local zonei, zonec, zonenames = {}, {}, {}
 for ci,c in pairs{GetMapContinents()} do
 	zonenames[ci] = {GetMapZones(ci)}
@@ -13,7 +14,12 @@ end
 
 local cache = {}
 local function MapPoint(zone, x, y, desc, c, z)
+
+	if TourGuide.BZ and zone then
+		if TourGuide.BZB[zone] then zone = TourGuide.BZ[zone] end
+	end
 	TourGuide:DebugF(1, "Mapping %q - %s (%.2f, %.2f)", desc, zone or z, x, y)
+
 	local zi, zc = z or zone and zonei[zone], c or zone and zonec[zone]
 	if not zi then
 		if zone then TourGuide:PrintF(L["Cannot find zone %q, using current zone."], zone)

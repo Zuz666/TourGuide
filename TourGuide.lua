@@ -10,6 +10,16 @@ TourGuide.guidelist = {}
 TourGuide.nextzones = {}
 TourGuide.Locale = L
 
+if L.LOC_FLAG then
+	if LibStub then
+		if LibStub("LibBabble-Zone-3.0", true) then
+			TourGuide.BZB = LibStub("LibBabble-Zone-3.0"):GetBaseLookupTable()
+			TourGuide.BZ  = LibStub("LibBabble-Zone-3.0"):GetLookupTable()
+			TourGuide:DebugF (1, "LibBabble-Zone-3.0 loaded!")
+		end
+	end
+end
+
 
 TourGuide.icons = setmetatable({
 	ACCEPT = "Interface\\GossipFrame\\AvailableQuestIcon",

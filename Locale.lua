@@ -1,4 +1,4 @@
-
+﻿
 local localized
 local loc = GetLocale()
 
@@ -10,12 +10,16 @@ local loc = GetLocale()
 local engrish = {
 	PART_GSUB = "%s%(Part %d+%)",
 	PART_FIND = "(.+)%s%(Part %d+%)",
+	PART_TEXT = "Part",
+	PART_MATCH = "%s%(Part (%d+)%)",
 
 	-- Mapping.lua
 	COORD_MATCH = "%(([%d.]+),%s?([%d.]+)%)",
+
+    LOC_FLAG = (GetLocale()~="enUS" and GetLocale()~="enGB"),
 }
 
-
+ 
 ----------------------
 --      German      --
 ----------------------
@@ -23,6 +27,7 @@ local engrish = {
 if loc == "deDE" then localized = {
 	PART_GSUB = "%s%(Teil %d+%)",
 	PART_FIND = "(.+)%s%(Teil %d+%)",
+	PART_TEXT = "Teil",
 	["(.*) is now your home."] = "(.*) ist jetzt Euer Zuhause.",
 	["Quest accepted: (.*)"] = "Quest angenommen: (.*)",
 	["^You .*Hitem:(%d+).*(%[.+%])"] = "^Ihr .*Hitem:(%d+).*(%[.+%])",
@@ -70,6 +75,7 @@ if loc == "deDE" then localized = {
 if loc == "frFR" then localized = {
 	PART_GSUB = "%s%(Partie %d+%)",
 	PART_FIND = "(.+)%s%(Partie %d+%)",
+	PART_TEXT = "Partie",
 	["(.*) is now your home."] = "(.*) est maintenant votre foyer.",
 	["Quest accepted: (.*)"] = "Qu\195\170te accept\195\169e: (.*)",
 	["^You .*Hitem:(%d+).*(%[.+%])"] = "^Vous .*Hitem:(%d+).*(%[.+%])",
@@ -117,6 +123,8 @@ if loc == "frFR" then localized = {
 if loc == "ruRU" then localized = {
 	PART_GSUB = "%s%(\208\167\208\176\209\129\209\130\209\140 %d+%)",
 	PART_FIND = "(.+)%s%(\208\167\208\176\209\129\209\130\209\140 %d+%)",
+	PART_TEXT = "\208\167\208\176\209\129\209\130\209\140",
+	[" |cff808080(Optional)"] = " |cff808080(Необязательный)",
 	["(.*) is now your home."] = "\208\146\208\176\209\136 \208\189\208\190\208\178\209\139\208\185 \208\180\208\190\208\188 - (.*).",
 	["Quest accepted: (.*)"] = "\208\159\208\190\208\187\209\131\209\135\208\181\208\189\208\190 \208\183\208\176\208\180\208\176\208\189\208\184\208\181: (.*)",
 	["^You .*Hitem:(%d+).*(%[.+%])"] = "^\208\146\208\176\209\136\208\176 .*H\208\180\208\190\208\177\209\139\209\135\208\176:(%d+).*(%[.+%])",
@@ -131,6 +139,7 @@ if loc == "ruRU" then localized = {
 if loc == "koKR" then localized = {
 	PART_GSUB = "%s%(파트 %d+%)",
 	PART_FIND = "(.+)%s%(파트 %d+%)",
+	PART_TEXT = "파트",
 	["(.*) is now your home."] = "이제부터 (.*) 여관에 머무릅니다.",
 	["Quest accepted: (.*)"] = "퀘스트를 수락했습니다: (.*)",
 	["^You .*Hitem:(%d+).*(%[.+%])"] = "^아이템을 획득했습니다: .*Hitem:(%d+).*(%[.+%])",

@@ -90,7 +90,7 @@ function TourGuide:UpdateGuidesPanel()
 		row.i = i + offset + 1
 
 		local name = self.guidelist[i + offset + 1]
-		row.text:SetText(name)
+		row.text:SetText(TourGuide:GuideTitleTranslator(name))
 		row.guide = name
 		row:SetChecked(self.db.char.currentguide == name)
 

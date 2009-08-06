@@ -12,7 +12,7 @@
 ## SavedVariables: TourGuideAlphaDB
 ## SavedVariablesPerCharacter: TourGuideQuestHistoryDB
 
-## OptionalDeps: Dongle, Optionhouse, TomTom, tekDebug
+## OptionalDeps: Dongle, Optionhouse, TomTom, tekDebug, LibBabble-Zone-3.0
 
 ## LoadManagers: AddonLoader
 ## X-LoadOn-Always: delayed
@@ -26,6 +26,7 @@ WidgetWarlock.lua
 
 Locale.lua
 TourGuide.lua
+Translator.lua
 Parser.lua
 Mapping.lua
 Broker.lua

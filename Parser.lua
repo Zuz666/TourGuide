@@ -1,5 +1,4 @@
 
-
 local actiontypes = {
 	A = "ACCEPT",
 	C = "COMPLETE",
@@ -50,10 +49,11 @@ local function ParseQuests(...)
 		local _, _, races = text:find("|R|([^|]+)|")
 
 		if text ~= "" and (not classes or classes:find(myclass)) and (not races or races:find(myrace)) then
+			local questid
 			local _, _, action, quest, tag = text:find("^(%a) ([^|]*)(.*)")
 			assert(actiontypes[action], "Unknown action: "..text)
 			quest = quest:trim()
-			if not (action == "A" or action =="C" or action =="T") then
+			if not (action == "A" or action == "C" or action == "T") then
 				quest = quest.."@"..uniqueid.."@"
 				uniqueid = uniqueid + 1
 			end
@@ -87,8 +87,13 @@ function TourGuide:LoadGuide(name, complete)
 	self.zonename = zonename
 	self.actions, self.quests, self.tags = ParseQuests(string.split("\n", self.guides[self.db.char.currentguide]()))
 
+	if TourGuide.Locale.LOC_FLAG then
+		local fails = TourGuide:QuestsTranslator()
+		TourGuide:DebugF ( "Translating guide: %q. First try. Fails: %u.", self.db.char.currentguide, fails)
+		if fails > 0 then TourGuide.fTGBgScan:Show() end
+		TourGuide:QuestsZonesTranslator()
+	end
+
 	if not self.db.char.turnins[name] then self.db.char.turnins[name] = {} end
 	self.turnedin = self.db.char.turnins[name]
 end
-
-
