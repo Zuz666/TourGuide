@@ -61,7 +61,7 @@ do
 			local fails = TourGuide:QuestsTranslator()
 			if fails == 0 then fTGBgScan:Hide() end
 			TourGuide:UpdateStatusFrame()
-			TourGuide:DebugF ( "Translating guide: %q. Try: %u. Fails: %u.", TourGuide.db.char.currentguide, Reiterations, fails)
+			TourGuide:DebugF (1, "Translating guide: %q. Try: %u. Fails: %u.", TourGuide.db.char.currentguide, Reiterations, fails)
 			if Reiterations > 9 then
 				fTGBgScan:Hide()
 				Reiterations = 0

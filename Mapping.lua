@@ -61,7 +61,7 @@ function TourGuide:ParseAndMapCoords(action, quest, zone, note, qid, logi)
 	if not THREE_TWO and (action == "ACCEPT" or action == "TURNIN") and LightHeaded and self:MapLightHeadedNPC(qid, action, quest) and not self.db.alwaysmapnotecoords then return end
 
 	if note and self.db.char.mapnotecoords then for x,y in note:gmatch(L.COORD_MATCH) do table.insert(temp, tonumber(y)); table.insert(temp, tonumber(x)) end end
-	if THREE_TWO and not temp[1] and logi then
+	if THREE_TWO and QuestMapUpdateQuest and not temp[1] and logi then
 		for i=1,QuestMapUpdateQuest(logi) do
 			local mapid, x, y = QuestMapGetPOIInfoForQuest(logi, i)
 			if x and y then

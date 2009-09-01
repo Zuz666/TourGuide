@@ -16,7 +16,7 @@ local engrish = {
 	-- Mapping.lua
 	COORD_MATCH = "%(([%d.]+),%s?([%d.]+)%)",
 
-    LOC_FLAG = (GetLocale()~="enUS" and GetLocale()~="enGB"),
+    LOC_FLAG = (loc~="enUS" and loc~="enGB"),
 }
 
  
@@ -124,11 +124,54 @@ if loc == "ruRU" then localized = {
 	PART_GSUB = "%s%(\208\167\208\176\209\129\209\130\209\140 %d+%)",
 	PART_FIND = "(.+)%s%(\208\167\208\176\209\129\209\130\209\140 %d+%)",
 	PART_TEXT = "\208\167\208\176\209\129\209\130\209\140",
-	[" |cff808080(Optional)"] = " |cff808080(Необязательный)",
 	["(.*) is now your home."] = "\208\146\208\176\209\136 \208\189\208\190\208\178\209\139\208\185 \208\180\208\190\208\188 - (.*).",
 	["Quest accepted: (.*)"] = "\208\159\208\190\208\187\209\131\209\135\208\181\208\189\208\190 \208\183\208\176\208\180\208\176\208\189\208\184\208\181: (.*)",
 	["^You .*Hitem:(%d+).*(%[.+%])"] = "^\208\146\208\176\209\136\208\176 .*H\208\180\208\190\208\177\209\139\209\135\208\176:(%d+).*(%[.+%])",
 	["|cffff4500This quest is not listed in your current guide"] = "|cffff4500\208\173\209\130\208\190\208\179\208\190 \208\183\208\176\208\180\208\176\208\189\208\184\209\143 \208\189\208\181\209\130 \208\178 \208\178\209\139\208\177\209\128\208\176\208\189\208\189\208\190\208\188 \209\128\209\131\208\186\208\190\208\178\208\190\208\180\209\129\209\130\208\178\208\181",
+	["This panel lets you choose a guide to load.  Upon completion the next guide will load automatically.  Completed guides can be reset by shift-clicking."] = "Этот экран позволяет выбирать гайд для загрузки. После завершения следующий гайд загружается автоматически. Завершённые гайды могут быть сброшены нажатием Shift+клик.",
+	["These settings are saved on a per-char basis."] = "Эти настройки сохраняются для каждого пользователя отдельно.",
+	["Guides"] = "Гайды",
+	["Config"] = "Настройка",
+	["|cff%02x%02x%02x%d%% complete"] = "|cff%02x%02x%02x%d%% завершено",
+	["No Guide Loaded"] = "Гайд не выбран",
+	["Accept quest"] = "Взять задание",
+	["Complete quest"] = "Завершить задание",
+	["Turn in quest"] = "Выполнить задание",
+	["Kill mob"] = "Убить моба",
+	["Run to"] = "Идти в",
+	["Fly to"] = "Лететь в",
+	["Set hearth"] = "Установить камень возвращения",
+	["Use hearth"] = "Использовать камень возвращения",
+	["Note"] = "Примечание",
+	["Use item"] = "Использовать предмет",
+	["Buy item"] = "Купить предмет",
+	["Boat to"] = "Плыть на корабле в",
+	["Get flight point"] = "Найти пункт полёта",
+	["Tour Guide - Help"] = "Tour Guide - Справка",
+	["Confused?  GOOD!  Okey, fine... here's a few hints."] = "Пара советов для тех кто заблудился.",
+	["Automatically track quests"] = "Автоматически отслеживать задания",
+	["Automatically toggle the default quest tracker for current 'complete quest' objectives."] = "Автоматически отслеживать задания в общем списке заданий.",
+	["Show status frame"] = "Показывать окно статуса",
+	["Display the status frame with current quest objective."] = "Показывать окно статуса с целью текущего задания.",
+	["Map note coords"] = "Показывать примечания на карте",
+	["Map coordinates found in tooltip notes (requires TomTom)."] = "Показывать места, обозначенные координатами из примечаний к заданию (необходим TomTom).",
+	["Automatically map questgivers"] = "Показывать на карте квестгиверов",
+	["Automatically map questgivers for accept and turnin objectives (requires LightHeaded and TomTom)."] = "Показывать на карте квестгиверов, которым сдаются или у которых берутся задания (необходим LightHeaded и TomTom).",
+	["Always map coords from notes"] = "Всегда использовать координаты из примечаний",
+	["Map note coords even when LightHeaded provides coords."] = "Всегда использовать координаты из примечаний к заданиям даже если LightHeaded предоставляет свои.",
+	["Help"] = "Справка",
+	["Reset"] = "Сброс",
+	["Reset the status frame to the default position"] = "Сбросить окно статуса в позицию по умолчанию.",
+	["Reset the item button to the default position"] = "Сбросить кнопку предметов в позицию по умолчанию.",
+	["Show item button"] = "Показывать кнопку для предметов",
+	["Display a button when you must use an item to start or complete a quest."] = "Показывать специальную кнопку когда необходимо использовать предмет, чтобы начать или завершить задание.",
+	["Show buttom for 'complete' objectives"] = "Показывать кнопку предметов для завершённых заданий",
+	["The advanced quest tracker in the default UI will show these items.  Enable this if you would rather have TourGuide's button."] = "Расширенный список заданий станддартного UI показывает эти предметы. Можно включить при необходимости, чтобы TourGuide показывал на своей кнопке.",
+	["Tour Guide - Guides"] = "Tour Guide - Гайды",
+	["K No guide loaded... |N|Click to select a guide|"] = "K 불러온 가이드 없음... |N|가이드를 선택하려면 클릭하세요|",
+	[" |cff808080(Optional)"] = " |cff808080(Необязательный)",
+	["Cannot find zone %q, using current zone."] = "Зона %q не найдена, будет использована текущая зона.",
+	["No zone provided, using current zone."] = "Зона не указана, будет использована текущая зона.",
 } end
 
 
@@ -194,3 +237,5 @@ if loc == "koKR" then localized = {
 -- This ensures we ALWAYS get a value back, even if it's the index we requested originally
 TOURGUIDE_LOCALE = localized and setmetatable(localized, {__index = function(t,i) return engrish[i] or i end})
 	or setmetatable(engrish, {__index = function(t,i) return i end})
+
+loc = nil

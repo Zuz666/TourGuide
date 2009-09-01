@@ -89,7 +89,7 @@ function TourGuide:LoadGuide(name, complete)
 
 	if TourGuide.Locale.LOC_FLAG then
 		local fails = TourGuide:QuestsTranslator()
-		TourGuide:DebugF ( "Translating guide: %q. First try. Fails: %u.", self.db.char.currentguide, fails)
+		TourGuide:DebugF (1, "Translating guide: %q. First try. Fails: %u.", self.db.char.currentguide, fails)
 		if fails > 0 then TourGuide.fTGBgScan:Show() end
 		TourGuide:QuestsZonesTranslator()
 	end
