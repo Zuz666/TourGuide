@@ -168,7 +168,7 @@ if loc == "ruRU" then localized = {
 	["Show buttom for 'complete' objectives"] = "Показывать кнопку предметов для завершённых заданий",
 	["The advanced quest tracker in the default UI will show these items.  Enable this if you would rather have TourGuide's button."] = "Расширенный список заданий станддартного UI показывает эти предметы. Можно включить при необходимости, чтобы TourGuide показывал на своей кнопке.",
 	["Tour Guide - Guides"] = "Tour Guide - Гайды",
-	["K No guide loaded... |N|Click to select a guide|"] = "K 불러온 가이드 없음... |N|가이드를 선택하려면 클릭하세요|",
+	["K No guide loaded... |N|Click to select a guide|"] = "K Гайд не загружен... |N|Клик для выбора гайда|",
 	[" |cff808080(Optional)"] = " |cff808080(Необязательный)",
 	["Cannot find zone %q, using current zone."] = "Зона %q не найдена, будет использована текущая зона.",
 	["No zone provided, using current zone."] = "Зона не указана, будет использована текущая зона.",
