@@ -71,7 +71,10 @@ do
 
 	fTGBgScan:SetScript( "OnUpdate", fTGBgScan.OnUpdate );
 	fTGBgScan:Hide()
-	TourGuide.fTGBgScan = fTGBgScan
+
+	function TourGuide:QuestsBackgroundTranslator()
+		fTGBgScan:Show()
+	end
 end
 
 

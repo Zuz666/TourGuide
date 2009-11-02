@@ -88,9 +88,7 @@ function TourGuide:LoadGuide(name, complete)
 	self.actions, self.quests, self.tags = ParseQuests(string.split("\n", self.guides[self.db.char.currentguide]()))
 
 	if TourGuide.Locale.LOC_FLAG then
-		local fails = TourGuide:QuestsTranslator()
-		TourGuide:DebugF (1, "Translating guide: %q. First try. Fails: %u.", self.db.char.currentguide, fails)
-		if fails > 0 then TourGuide.fTGBgScan:Show() end
+		TourGuide:QuestsBackgroundTranslator()
 		TourGuide:QuestsZonesTranslator()
 	end
 
