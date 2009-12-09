@@ -44,6 +44,10 @@ local function PLAYER_REGEN_ENABLED(self)
 		frame:SetAttribute("item1", "item:"..item)
 		frame:Show()
 		texture = nil
+
+		local macroid = GetMacroIndexByName("TourGuide")
+		if macroid then EditMacro(macroid, name, 1, "#showtooltip\n/use item:"..item, 1) end
+
 	else
 		frame:SetAttribute("item1", nil)
 		frame:Hide()
@@ -53,8 +57,8 @@ end
 frame:SetScript("OnEvent", PLAYER_REGEN_ENABLED)
 
 
-function TourGuide:SetUseItem(tex, use)
-	texture, item = tex, use
+function TourGuide:SetUseItem(useitem)
+	item, texture = useitem, useitem and GetItemIcon(useitem)
 	if InCombatLockdown() then frame:RegisterEvent("PLAYER_REGEN_ENABLED") else PLAYER_REGEN_ENABLED(frame) end
 end
 

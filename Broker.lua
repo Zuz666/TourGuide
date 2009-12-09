@@ -78,7 +78,7 @@ function TourGuide:UpdateStatusFrame()
 	local note, useitem, optional = self:GetObjectiveTag("N", nextstep), self:GetObjectiveTag("U", nextstep), self:GetObjectiveTag("O", nextstep)
 
 	dataobj.text, dataobj.icon = (quest or"???")..(note and " [?]" or ""), self.icons[action]
-	SendAddonMessage("TGuide", action.." "..(quest or "???"), "PARTY")
+	TourGuide:CommCurrentObjective()
 
 	self:DebugF(1, "Progressing to objective \"%s %s\"", action, quest)
 
@@ -89,17 +89,25 @@ function TourGuide:UpdateStatusFrame()
 	end
 
 	if self.db.char.showuseitem and action == "COMPLETE" and self.db.char.showuseitemcomplete then
-		local useitem2, tex2 = GetQuestLogSpecialItemInfo(logi or 0)
+		local useitem2 = GetQuestLogSpecialItemInfo(logi or 0)
 		if useitem2 then useitem2 = tonumber(useitem2:match("item:(%d+):")) end
-		self:SetUseItem(tex2 or useitem and select(10, GetItemInfo(tonumber(useitem))), useitem2 or useitem)
+		self:SetUseItem(useitem2 or useitem)
 	elseif self.db.char.showuseitem and action ~= "COMPLETE" then
-		self:SetUseItem(useitem and select(10, GetItemInfo(tonumber(useitem))), useitem)
+		self:SetUseItem(useitem)
 	else
 		self:SetUseItem()
 	end
 
 	self:UpdateOHPanel()
 	self:UpdateGuidesPanel()
+end
+
+
+function TourGuide:CommCurrentObjective()
+	local action, quest, fullquest = self:GetObjectiveInfo()
+	local qid = self:GetObjectiveTag("QID")
+	SendAddonMessage("TGuide", action.." "..(quest or "???"), "PARTY")
+	if qid then SendAddonMessage("TGuideQID", qid, "PARTY") end
 end
 
 
