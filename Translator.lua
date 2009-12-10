@@ -55,7 +55,7 @@ do
 
 	function fTGBgScan:OnUpdate( Elapsed )
 		TicksCounter = TicksCounter + Elapsed;
-		if ( TicksCounter > 1 ) then
+		if ( TicksCounter > 2 ) then
 			TicksCounter = 0;
 			Reiterations = Reiterations + 1
 			local fails = TourGuide:QuestsTranslator()
